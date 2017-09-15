@@ -9,7 +9,7 @@ class Piece
     :Bishop => '♝',
     :Knight => '♞',
     :Pawn => '♟',
-    :NullPiece => '□'
+    :NullPiece => ' '
   }
 
   def initialize(position, color, board)
@@ -38,7 +38,12 @@ class Piece
 
 
   def to_s
-    SYMBOLS[self.class.name.to_sym].colorize(self.color)
+    if self.color == :black
+      SYMBOLS[self.class.name.to_sym].colorize(self.color)
+    else
+      SYMBOLS[self.class.name.to_sym].colorize(:light_white)
+    end
+
   end
 
   def inspect

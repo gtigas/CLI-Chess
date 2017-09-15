@@ -12,34 +12,47 @@ class Display
     @selected_pos = selected_pos
   end
 
-  def get_input
+  def get_input(message = nil)
     cursor = Cursor.new(@current_pos, @board)
     until cursor.selected?
-      render
+      render(message)
       @current_pos = cursor.get_input
       system 'clear'
     end
     @current_pos
   end
 
-  def render
-    count = 0
+  def render(message = nil)
+    puts message
 
     @board.grid.each.with_index do |row, row_idx|
-      print " "
       row.each.with_index do |piece, col_idx|
         if [row_idx, col_idx] == @current_pos
-          print piece.to_s.colorize(:red)
+          print " #{piece.to_s.colorize(:red)} ".on_green
         elsif [row_idx, col_idx]  == @selected_pos
-          print piece.to_s.colorize(:blue)
+          print " #{piece.to_s.colorize(:blue)} ".on_cyan
         else
-          print piece
+          print " #{piece} "
+              .colorize(:background => choose_bg_color(row_idx, col_idx))
         end
-        print " "
       end
       puts ""
     end
   end
 
+  private
 
+  def choose_bg_color(row, col)
+    if col == 0 && row % 2 == 0
+      :yellow
+    elsif col == 0 && row % 2 != 0
+      :white
+    elsif col % 2 == 0 && row % 2 != 0
+      :white
+    elsif col % 2 != 0 && row % 2 == 0
+      :white
+    else
+      :yellow
+    end
+  end
 end
