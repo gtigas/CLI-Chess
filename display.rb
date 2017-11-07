@@ -24,7 +24,7 @@ class Display
   end
 
   def render(current_player , last_message  = nil)
-    puts "Controls: Use the arrow keys to move the cursor and use the space bar to select a position \n \n \n"
+    puts "Controls: Use the arrow keys to move the cursor \nand use the space bar to select a position \n \n"
     if board.in_check?(current_player.color)
       puts "CHECK! Your turn, #{current_player.name} (#{current_player.color})!"
     else

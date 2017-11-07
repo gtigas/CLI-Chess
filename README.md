@@ -1,6 +1,8 @@
 # CLI Chess
 CLI Chess is a command-line chess game written in Ruby.
 
+![alt text](assets/chess.png)
+
 ## Setup
 
 1. Ensure [Ruby](https://www.ruby-lang.org/en/documentation/installation/) is installed
