@@ -3,6 +3,8 @@ require_relative 'display'
 
 class Game
 
+  attr_accessor :current_player, :board, :player1, :player2
+
   def initialize(player1, player2)
     @board = Board.new
     @player1 = player1
@@ -10,9 +12,9 @@ class Game
   end
 
   def play
-    @current_player = @player1
+    @current_player = player1
     until over?
-      @current_player.play_turn(@board)
+      current_player.play_turn(board)
       switch_player
     end
   end
@@ -20,11 +22,11 @@ class Game
   private
 
   def over?
-    @board.checkmate?(@current_player.color)
+    board.checkmate?(current_player.color)
   end
 
   def switch_player
-    @current_player = @current_player == @player1 ? @player2 : @player1
+    @current_player = current_player == player1 ? player2 : player1
   end
 
 end

@@ -84,7 +84,6 @@ class Board
     ]
 
     new_grid[1] = Array.new(8) { |i| Pawn.new([1,i], :black, self) }
-    # new_grid[1] = Array.new(8) { NullPiece.instance } # remove pawns for testing
 
     new_grid[2..5].each do |row|
       row.each_index do |idx|
@@ -120,9 +119,7 @@ class Board
 end
 
 class BoardErrors < StandardError
-
 end
 
 class MoveError < BoardErrors
-
 end
