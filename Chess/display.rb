@@ -12,18 +12,24 @@ class Display
     @selected_pos = selected_pos
   end
 
-  def get_input(message = nil)
+  def get_input(current_player, message)
     cursor = Cursor.new(@current_pos, @board)
     until cursor.selected?
-      render(message)
+      render(current_player, message)
       @current_pos = cursor.get_input
       system 'clear'
     end
     @current_pos
   end
 
-  def render(message = nil)
-    puts message
+  def render(current_player , last_message  = nil)
+    puts last_message if last_message
+    if @board.in_check?(current_player.color)
+      puts "CHECK! Your turn, #{current_player.name} (#{current_player.color})!"
+    else
+      puts "Your turn, #{current_player.name} (#{current_player.color})!"
+    end
+
 
     @board.grid.each.with_index do |row, row_idx|
       row.each.with_index do |piece, col_idx|

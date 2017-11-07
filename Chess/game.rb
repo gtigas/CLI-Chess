@@ -39,21 +39,22 @@ class HumanPlayer
   end
 
   def play_turn(board)
+    error_message = nil
     begin
-      start_pos = Display.new(board).get_input("Your turn, #{name} (#{color})!")
+      start_pos = Display.new(board).get_input(self, error_message)
       raise MoveError.new("You cant' select an empty space.") if board[start_pos].is_a?(NullPiece)
       raise MoveError.new("You can't choose the other player's pieces!") if board[start_pos].color != @color
       raise MoveError.new("That piece can't move anywhere") if board[start_pos].valid_moves.empty?
     rescue MoveError => error
-      puts error.message
+      error_message = error.message
       retry
     end
-
+    error_message = nil
     begin
-      end_pos = Display.new(board, start_pos, start_pos).get_input
+      end_pos = Display.new(board, start_pos, start_pos).get_input(self, error_message)
       board.move_piece(start_pos, end_pos)
     rescue MoveError => error
-      puts error.message
+      error_message = error.message
       retry
     end
   end
@@ -61,7 +62,7 @@ class HumanPlayer
 end
 
 if __FILE__ == $PROGRAM_NAME
-  player1 = HumanPlayer.new("george", :black)
-  player2 = HumanPlayer.new("ned", :white)
+  player1 = HumanPlayer.new("Player 1", :white)
+  player2 = HumanPlayer.new("Player 2", :black)
   Game.new(player1, player2).play
 end
