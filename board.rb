@@ -68,6 +68,10 @@ class Board
     new_board
   end
 
+  def all_pieces(color)
+    @grid.flatten.select {|piece| piece.color == color}
+  end
+
   private
 
   def new_game_grid
@@ -112,9 +116,6 @@ class Board
     .first.position
   end
 
-  def all_pieces(color)
-    @grid.flatten.select {|piece| piece.color == color}
-  end
 
 end
 
