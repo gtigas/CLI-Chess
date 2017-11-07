@@ -12,6 +12,8 @@ class Piece
     :NullPiece => ' '
   }
 
+
+
   def initialize(position, color, board)
     @position = position
     @color = color
@@ -49,4 +51,9 @@ class Piece
   def inspect
     "p"
   end
+
+  def self.get_new_position(previous_pos, diff)
+    [previous_pos[0] + diff[0], previous_pos[1] + diff[1]]
+  end
+
 end

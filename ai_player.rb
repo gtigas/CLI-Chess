@@ -16,7 +16,7 @@ class AIPlayer
   private
 
   def own_pieces
-    board.all_pieces(color)
+    board.all_pieces(color).shuffle
   end
 
   def evauluate_board(given_board)

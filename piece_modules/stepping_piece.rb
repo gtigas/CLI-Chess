@@ -2,7 +2,8 @@ module SteppingPiece
   def moves
     possible_moves = []
     move_diffs.each do |diff|
-      possible_moves << [diff[0] + @position[0], diff[1] + @position[1]]
+      move_position = Piece.get_new_position(@position, diff)
+      possible_moves << move_position
     end
 
     possible_moves.select do |move|
