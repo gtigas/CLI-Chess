@@ -76,17 +76,8 @@ class Board
 
   def new_game_grid
     new_grid = Array.new(8) { Array.new(8) }
-    new_grid[0] = [
-      Rook.new([0,0], :black, self),
-      Knight.new([0,1], :black, self),
-      Bishop.new([0,2], :black, self),
-      Queen.new([0,3], :black, self),
-      King.new([0,4], :black, self),
-      Bishop.new([0,5], :black, self),
-      Knight.new([0,6], :black, self),
-      Rook.new([0,7], :black, self)
-    ]
 
+    new_grid[0] = populate_pieces(:black)
     new_grid[1] = Array.new(8) { |i| Pawn.new([1,i], :black, self) }
 
     new_grid[2..5].each do |row|
@@ -96,19 +87,23 @@ class Board
     end
 
     new_grid[6] = Array.new(8) {|i| Pawn.new([6,i], :white, self)}
-
-    new_grid[7] = [
-      Rook.new([7,0], :white, self),
-      Knight.new([7,1], :white, self),
-      Bishop.new([7,2], :white, self),
-      Queen.new([7,3], :white, self),
-      King.new([7,4], :white, self),
-      Bishop.new([7,5], :white, self),
-      Knight.new([7,6], :white, self),
-      Rook.new([7,7], :white, self)
-    ]
+    new_grid[7] = populate_pieces(:white)
 
     new_grid
+  end
+
+  def populate_pieces(color)
+    row = color == :black ? 0 : 7
+    [
+      Rook.new([row,0], color, self),
+      Knight.new([row,1], color, self),
+      Bishop.new([row,2], color, self),
+      Queen.new([row,3], color, self),
+      King.new([row,4], color, self),
+      Bishop.new([row,5], color, self),
+      Knight.new([row,6], color, self),
+      Rook.new([row,7], color, self)
+    ]
   end
 
   def king_pos(color)
