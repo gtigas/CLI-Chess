@@ -10,6 +10,7 @@ CLI Chess is a command-line chess game written in Ruby.
 3. Navigate into the game folder `$ cd CLI-Chess`
 4. Install dependencies `$ bundle install`
 5. To start the game, run `$ ruby game.rb`
+6. When prompted type 'yes' or 'no' to play against the computer.
 
 ## Features/Implementation
 CLI Chess is split up into four basic pieces:
@@ -29,7 +30,7 @@ To replicate this behavior and to keep code reusable, I created a `SteppingPiece
 #### Stepping Pieces
 Each stepping piece holds a reference to the spaces they can move, relative to [0,0]. These `move_diffs` are then given actual positions using the reference to the board, being sure to only keep moves that are on the board.
 
-```
+```ruby
 #stepping_piece.rb
 ...
 def moves
@@ -49,7 +50,7 @@ end
 #### Sliding Pieces
 Each sliding piece holds a reference to which directions they are able to slide to. Using these `move_dirs`, possible moves are found by moving along that direction until they hit the end of the board or another piece.
 
-```
+```ruby
 #sliding_piece.rb
 ...
 def moves
@@ -65,3 +66,6 @@ def moves
   possible_moves
 end
 ```
+
+### Computer Player (AI)
+Players are able to play against a computer player. The computer player decides which moves to make by weighting all possible moves in terms of piece value. Currently the AI will either take a piece if it is able to, or randomly select a move from its possible moves. Future improvements will implement more complex logic by using branching trees and algorithms. 

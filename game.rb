@@ -1,8 +1,7 @@
-require_relative 'board'
-require_relative 'display'
-require_relative 'human_player'
-require_relative 'ai_player'
-require 'byebug'
+require_relative 'src/board'
+require_relative 'src/display'
+require_relative 'src/human_player'
+require_relative 'src/ai_player'
 
 class Game
 
