@@ -61,7 +61,7 @@ if __FILE__ == $PROGRAM_NAME
   end
   case response
   when 'yes'
-    player2 = AIPlayer.new("Player 2", :black)
+    player2 = AIPlayer.new("Computer", :black)
   when 'no'
     player2 = HumanPlayer.new("Player 2", :black)
   end

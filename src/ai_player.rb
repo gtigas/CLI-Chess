@@ -10,6 +10,9 @@ class AIPlayer
 
   def play_turn(board)
     @board = board
+    Display.new(board).render(self, nil)
+    sleep(2)
+    system('clear')
     get_weighted_move
   end
 
